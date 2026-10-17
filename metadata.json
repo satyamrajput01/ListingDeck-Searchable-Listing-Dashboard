@@ -1,0 +1,7 @@
+{
+  "name": "ListingDeck",
+  "description": "A production-grade searchable listing dashboard featuring real-time debounced search, combined multi-attribute filtering, immutable sorting, pagination, and resilient asynchronous UI states.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

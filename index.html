@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self';" />
+    
+    <!-- Subpath normalization for GitHub Pages -->
+    <script>
+      (function() {
+        var p = window.location.pathname;
+        if (p && !p.endsWith('/') && !p.split('/').pop().includes('.')) {
+          var target = window.location.protocol + '//' + window.location.host + p + '/' + window.location.search + window.location.hash;
+          window.location.replace(target);
+        }
+      })();
+    </script>
+
+    <title>ListingDeck — Searchable Listing Dashboard</title>
+    <meta name="description" content="A production-grade searchable listing dashboard featuring real-time debounced search, combined multi-attribute filtering, immutable sorting, pagination, and resilient asynchronous UI states." />
+    
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:title" content="ListingDeck — Searchable Listing Dashboard" />
+    <meta property="og:description" content="A production-grade searchable listing dashboard featuring real-time debounced search, combined multi-attribute filtering, immutable sorting, pagination, and resilient asynchronous UI states." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ListingDeck — Searchable Listing Dashboard" />
+    <meta name="twitter:description" content="Responsive searchable listing dashboard with debounced search, combined multi-attribute filtering, and zero framework overhead." />
+
+    <!-- Favicon & Stylesheet using relative paths for GitHub Pages subpath compatibility -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Navigation Bar adhering to Top Bar Contract: 3 zones -->
+    <header class="site-header" role="banner">
+      <div class="container">
+        <!-- Zone 1: Wordmark / Brand -->
+        <a href="./" class="brand-zone" aria-label="ListingDeck Home">
+          <svg class="brand-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; flex-shrink: 0;">
+            <rect width="32" height="32" rx="6" fill="#0F172A"/>
+            <rect x="6" y="7" width="20" height="4" rx="1.5" fill="#38BDF8"/>
+            <rect x="6" y="14" width="8" height="11" rx="2" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+            <rect x="18" y="14" width="8" height="11" rx="2" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="21" cy="9" r="1.5" fill="#34D399"/>
+          </svg>
+          <span class="brand-title">ListingDeck</span>
+        </a>
+
+        <!-- Zone 2: Navigation Links -->
+        <nav class="nav-zone" aria-label="Primary Navigation">
+          <a href="./" class="nav-link" aria-current="page">Listings</a>
+          <a href="#controls-section" class="nav-link">Search &amp; Filters</a>
+          <a href="privacy.html" class="nav-link">Privacy</a>
+          <a href="terms.html" class="nav-link">Terms</a>
+        </nav>
+
+        <!-- Zone 3: Quick Action -->
+        <div class="action-zone">
+          <a href="#controls-section" class="btn btn-secondary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px; flex-shrink: 0;">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Search
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Notice Banner: Subtle professional notice -->
+    <aside class="notice-banner" aria-label="Application Notice">
+      <div class="container notice-banner-inner">
+        <div class="notice-text">
+          <span>Illustrative listings for demonstration purposes.</span>
+        </div>
+        <div>
+          <span>Client-side filtering with pure JavaScript</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Viewport -->
+    <main id="main-content" class="site-main">
+      <div class="container">
+        <!-- Page Intro Header -->
+        <header class="page-intro">
+          <h1 class="page-title">Career &amp; Project Listings</h1>
+          <p class="page-description">
+            Explore opportunities across engineering, design, analytics, and infrastructure roles. Filter concurrently by domain, experience level, and work mode with real-time debounced search.
+          </p>
+        </header>
+
+        <!-- Dashboard View Tabs: All Listings vs. Saved Listings -->
+        <div class="view-tabs-container" role="tablist" aria-label="Listing Views">
+          <button
+            type="button"
+            role="tab"
+            id="tab-all-listings"
+            class="view-tab active"
+            aria-selected="true"
+            aria-controls="listings-section"
+          >
+            All Listings
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-saved-listings"
+            class="view-tab"
+            aria-selected="false"
+            aria-controls="listings-section"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 15px; height: 15px; flex-shrink: 0;">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Saved Listings
+            <span id="saved-count-badge" class="view-tab-count">0</span>
+          </button>
+        </div>
+
+        <!-- Filter & Search Toolbar Section -->
+        <section id="controls-section" class="filter-card" aria-label="Search and Filter Controls">
+          <h2 id="controls-heading" class="sr-only">Filter Opportunities</h2>
+
+          
+          <!-- Live Search Bar with Debounce & Clear -->
+          <div class="search-row">
+            <label for="search-input" class="filter-label">Search Listings</label>
+            <div class="search-field-wrapper" style="margin-top: 0.375rem;">
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0;">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="search"
+                id="search-input"
+                class="search-input"
+                placeholder="Search by role title, company, skills (e.g. JavaScript, SQL, Figma), or keywords..."
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button
+                type="button"
+                id="search-clear-btn"
+                class="search-clear-btn"
+                aria-label="Clear search input"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px; flex-shrink: 0;">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Multi-Select Category & Attribute Filters -->
+          <div class="filter-controls-grid">
+            <!-- Domain / Category Filter -->
+            <div class="filter-group">
+              <label for="category-filter" class="filter-label">Domain / Category</label>
+              <div class="select-wrapper">
+                <select id="category-filter" class="select-control">
+                  <option value="all">All Domains</option>
+                  <option value="Frontend Engineering">Frontend Engineering</option>
+                  <option value="Data &amp; Analytics">Data &amp; Analytics</option>
+                  <option value="UI/UX &amp; Design">UI/UX &amp; Design</option>
+                  <option value="Systems &amp; DevOps">Systems &amp; DevOps</option>
+                  <option value="Product &amp; QA">Product &amp; QA</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Experience Level Filter -->
+            <div class="filter-group">
+              <label for="experience-filter" class="filter-label">Experience Level</label>
+              <div class="select-wrapper">
+                <select id="experience-filter" class="select-control">
+                  <option value="all">All Levels</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Entry Level">Entry Level</option>
+                  <option value="Junior">Junior</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Work Mode Filter -->
+            <div class="filter-group">
+              <label for="workmode-filter" class="filter-label">Work Mode</label>
+              <div class="select-wrapper">
+                <select id="workmode-filter" class="select-control">
+                  <option value="all">All Work Modes</option>
+                  <option value="Remote">Remote</option>
+                  <option value="Hybrid">Hybrid</option>
+                  <option value="On-site">On-site</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Sort By Select -->
+            <div class="filter-group">
+              <label for="sort-order" class="filter-label">Sort By</label>
+              <div class="select-wrapper">
+                <select id="sort-order" class="select-control">
+                  <option value="newest">Newest First</option>
+                  <option value="oldest">Oldest First</option>
+                  <option value="title-asc">Title (A to Z)</option>
+                  <option value="title-desc">Title (Z to A)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Page Size -->
+            <div class="filter-group">
+              <label for="page-size" class="filter-label">Page Size</label>
+              <div class="select-wrapper">
+                <select id="page-size" class="select-control">
+                  <option value="6">6 per page</option>
+                  <option value="12">12 per page</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Reset Actions -->
+            <div class="filter-actions">
+              <button id="reset-filters-btn" class="btn btn-secondary" type="button" style="width: 100%;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px; flex-shrink: 0;">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                Reset Filters
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Status & Results Count Row -->
+        <section class="results-bar" aria-live="polite">
+          <div id="results-count" class="results-count">
+            Loading listings...
+          </div>
+          <div id="active-filters-container" class="active-filters-list" aria-label="Active Filters">
+            <!-- Active filter chips rendered here -->
+          </div>
+        </section>
+
+        <!-- Listings Content Container (Cards, Skeletons, Error, or Empty State) -->
+        <section id="listings-section" aria-labelledby="listings-heading">
+          <h2 id="listings-heading" class="sr-only">Available Listings</h2>
+          <div id="listings-container" class="listings-grid">
+            <!-- Populated via script.js -->
+          </div>
+        </section>
+
+        <!-- Client-Side Pagination Bar -->
+        <nav id="pagination-container" class="pagination-container" aria-label="Pagination Navigation">
+          <!-- Populated via script.js -->
+        </nav>
+      </div>
+    </main>
+
+    <!-- Accessible Details Modal Dialog -->
+    <div
+      id="details-modal"
+      class="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-hidden="true"
+    >
+      <div id="modal-content-container" class="modal-dialog">
+        <!-- Populated via openListingModal() in script.js -->
+      </div>
+    </div>
+
+    <!-- Site Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3 class="footer-brand-title">ListingDeck</h3>
+            <p class="footer-brand-desc">
+              A responsive, client-side listing dashboard featuring real-time debounced search, combined multi-attribute filtering using logical AND, immutable sorting, and asynchronous state management.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="./" class="footer-link">Listings</a>
+            <a href="#controls-section" class="footer-link">Search &amp; Filters</a>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-link">Terms and Conditions</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            &copy; 2026 ListingDeck. Illustrative listings for demonstration purposes.
+          </div>
+          <div>
+            Client-side execution · WCAG 2.1 AA accessible
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Vanilla ES6+ Engine with relative script path -->
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

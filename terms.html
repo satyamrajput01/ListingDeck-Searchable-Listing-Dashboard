@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self';" />
+    
+    <!-- Subpath normalization for GitHub Pages -->
+    <script>
+      (function() {
+        var p = window.location.pathname;
+        if (p && !p.endsWith('/') && !p.split('/').pop().includes('.')) {
+          var target = window.location.protocol + '//' + window.location.host + p + '/' + window.location.search + window.location.hash;
+          window.location.replace(target);
+        }
+      })();
+    </script>
+
+    <title>Terms and Conditions — ListingDeck</title>
+    <meta name="description" content="Terms and conditions governing the use of the ListingDeck web application and sample listings dataset." />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Bar Navigation adhering to Top Bar Contract -->
+    <header class="site-header" role="banner">
+      <div class="container">
+        <!-- Zone 1: Wordmark / Brand -->
+        <a href="./" class="brand-zone" aria-label="ListingDeck Home">
+          <svg class="brand-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; flex-shrink: 0;">
+            <rect width="32" height="32" rx="6" fill="#0F172A"/>
+            <rect x="6" y="7" width="20" height="4" rx="1.5" fill="#38BDF8"/>
+            <rect x="6" y="14" width="8" height="11" rx="2" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+            <rect x="18" y="14" width="8" height="11" rx="2" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="21" cy="9" r="1.5" fill="#34D399"/>
+          </svg>
+          <span class="brand-title">ListingDeck</span>
+        </a>
+
+        <!-- Zone 2: Navigation Links -->
+        <nav class="nav-zone" aria-label="Primary Navigation">
+          <a href="./" class="nav-link">Listings</a>
+          <a href="privacy.html" class="nav-link">Privacy</a>
+          <a href="terms.html" class="nav-link" aria-current="page">Terms</a>
+        </nav>
+
+        <!-- Zone 3: Action -->
+        <div class="action-zone">
+          <a href="./" class="btn btn-secondary btn-sm">Back to Dashboard</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="site-main">
+      <article class="container legal-page">
+        <header class="legal-header">
+          <div class="legal-kicker">Terms of Service</div>
+          <h1 class="legal-title">Terms and Conditions</h1>
+          <div class="legal-meta">Last Updated: October 15, 2026 · Version 1.1</div>
+        </header>
+
+        <div class="legal-content">
+          <section>
+            <h2>1. Purpose of the Application</h2>
+            <p>
+              ListingDeck ("Application") is an interactive frontend web dashboard demonstrating asynchronous data retrieval, debounced keyword search, multi-criteria filtering using boolean logical AND operations, immutable array sorting, and responsive UI design.
+            </p>
+          </section>
+
+          <section>
+            <h2>2. Illustrative Listings Notice</h2>
+            <p>
+              <strong>Demonstration Dataset:</strong> All role titles, organization and company names (such as Kite Cloud Systems, Urban Transit Labs, Meridian Health Analytics), and descriptions displayed within this dashboard are illustrative entries created for demonstration purposes.
+            </p>
+            <ul>
+              <li>The listings do not represent verified commercial employment vacancies, contracts, or legal solicitations.</li>
+              <li>No real affiliation, endorsement, sponsorship, or partnership exists between the project maintainer and any actual entity bearing a similar name.</li>
+              <li>Clicking an external link opens a reference placeholder URL (such as <code>example.com</code>). No application is submitted or received.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3. Acceptable Use</h2>
+            <p>
+              By accessing ListingDeck, you agree to use the application in accordance with all applicable laws and ethical standards. You agree not to:
+            </p>
+            <ul>
+              <li>Attempt to disrupt or overload the hosting infrastructure through denial-of-service attacks or abusive automated scraping.</li>
+              <li>Misrepresent the illustrative listings as real, verified commercial recruitment offerings.</li>
+              <li>Inject malicious payloads or bypass client-side security policies.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>4. Intellectual Property</h2>
+            <p>
+              The application source code, UI styling, and architecture are provided under the Apache License 2.0. You may inspect, review, and fork the code for technical and non-commercial educational purposes.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. Disclaimer of Warranties &amp; Limitation of Liability</h2>
+            <p>
+              THE APPLICATION IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE PROJECT AUTHOR DISCLAIMS ALL WARRANTIES, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. UNDER NO CIRCUMSTANCES SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING FROM THE USE OF OR INABILITY TO USE THIS APPLICATION.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. Project Maintainer &amp; Inquiries</h2>
+            <p>
+              For technical inquiries or questions regarding these terms, please contact:
+            </p>
+            <div class="legal-contact-card">
+              <p><strong>Project Author:</strong> Satyam Rajput</p>
+              <p><strong>Email Contact:</strong> <a href="mailto:satyamrajput9293@gmail.com" class="footer-link">satyamrajput9293@gmail.com</a></p>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3 class="footer-brand-title">ListingDeck</h3>
+            <p class="footer-brand-desc">
+              A responsive, client-side listing dashboard featuring real-time debounced search and clean data filtering.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="./" class="footer-link">Listings</a>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-link">Terms and Conditions</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div>&copy; 2026 ListingDeck. All rights reserved.</div>
+          <div>Terms of Use</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

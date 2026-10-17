@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self';" />
+    
+    <!-- Subpath normalization for GitHub Pages -->
+    <script>
+      (function() {
+        var p = window.location.pathname;
+        if (p && !p.endsWith('/') && !p.split('/').pop().includes('.')) {
+          var target = window.location.protocol + '//' + window.location.host + p + '/' + window.location.search + window.location.hash;
+          window.location.replace(target);
+        }
+      })();
+    </script>
+
+    <title>Privacy Policy — ListingDeck</title>
+    <meta name="description" content="Privacy Policy detailing data processing practices and operator information for the ListingDeck web application." />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Bar Navigation adhering to Top Bar Contract -->
+    <header class="site-header" role="banner">
+      <div class="container">
+        <!-- Zone 1: Wordmark / Brand -->
+        <a href="./" class="brand-zone" aria-label="ListingDeck Home">
+          <svg class="brand-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; flex-shrink: 0;">
+            <rect width="32" height="32" rx="6" fill="#0F172A"/>
+            <rect x="6" y="7" width="20" height="4" rx="1.5" fill="#38BDF8"/>
+            <rect x="6" y="14" width="8" height="11" rx="2" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+            <rect x="18" y="14" width="8" height="11" rx="2" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="21" cy="9" r="1.5" fill="#34D399"/>
+          </svg>
+          <span class="brand-title">ListingDeck</span>
+        </a>
+
+        <!-- Zone 2: Navigation Links -->
+        <nav class="nav-zone" aria-label="Primary Navigation">
+          <a href="./" class="nav-link">Listings</a>
+          <a href="privacy.html" class="nav-link" aria-current="page">Privacy</a>
+          <a href="terms.html" class="nav-link">Terms</a>
+        </nav>
+
+        <!-- Zone 3: Action -->
+        <div class="action-zone">
+          <a href="./" class="btn btn-secondary btn-sm">Back to Dashboard</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="site-main">
+      <article class="container legal-page">
+        <header class="legal-header">
+          <div class="legal-kicker">Data Transparency</div>
+          <h1 class="legal-title">Privacy Policy</h1>
+          <div class="legal-meta">Last Updated: October 15, 2026 · Version 1.1</div>
+        </header>
+
+        <div class="legal-content">
+          <section>
+            <h2>1. Overview and Architecture</h2>
+            <p>
+              ListingDeck is a client-side web application designed to provide interactive searching and filtering of opportunities. All computational operations—including keyword matching, category filtering, experience level filtering, sorting, and pagination—execute entirely inside your web browser.
+            </p>
+          </section>
+
+          <section>
+            <h2>2. Information Collection and Handling</h2>
+            <p>
+              <strong>Search Queries and Active Filters:</strong> Any search keywords, selected categories, work mode preferences, or sort orders you select are processed in volatile browser memory. They are not transmitted to, collected by, or stored in any remote database or external analytics service.
+            </p>
+            <p>
+              <strong>Personal Information:</strong> ListingDeck does not require user accounts, passwords, or personal profiles. We do not ask for or collect names, email addresses, resumes, or application documents.
+            </p>
+            <p>
+              <strong>Cookies and Tracking:</strong> The application does not deploy advertising cookies, tracking pixels, or cross-site tracking scripts.
+            </p>
+            <p>
+              <strong>Server Access Logs:</strong> As with standard web servers and content delivery networks, hosting platforms automatically log standard, non-personally identifiable technical connection data (including client IP addresses, browser user-agent headers, and request timestamps) solely for network routing, DDoS mitigation, and server security.
+            </p>
+          </section>
+
+          <section>
+            <h2>3. External Links and Third Parties</h2>
+            <p>
+              Listing cards and dialogs may contain external reference hyperlinks (such as to <code>example.com</code> or technical specifications). When navigating to external destinations:
+            </p>
+            <ul>
+              <li>External websites are governed by their respective privacy policies and terms of service.</li>
+              <li>All external links are configured with <code>rel="noopener noreferrer"</code> to prevent window.opener hijacking and protect your browsing session.</li>
+              <li>ListingDeck does not endorse or control external third-party content.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>4. Security Controls</h2>
+            <p>
+              We implement proactive frontend security measures, including a strict Content Security Policy (CSP), client-side input sanitization, text-node DOM rendering to prevent Cross-Site Scripting (XSS), and strict protocol verification for hyperlinks.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. Project Maintainer &amp; Contact</h2>
+            <p>
+              If you have inquiries regarding this privacy statement or the technical operation of ListingDeck, please contact the maintainer:
+            </p>
+            <div class="legal-contact-card">
+              <p><strong>Project Author:</strong> Satyam Rajput</p>
+              <p><strong>Email Contact:</strong> <a href="mailto:satyamrajput9293@gmail.com" class="footer-link">satyamrajput9293@gmail.com</a></p>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3 class="footer-brand-title">ListingDeck</h3>
+            <p class="footer-brand-desc">
+              Client-side searchable listing dashboard engineered with transparent data practices.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="./" class="footer-link">Listings</a>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-link">Terms and Conditions</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div>&copy; 2026 ListingDeck. All rights reserved.</div>
+          <div>Client-side execution · Zero tracking</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
